@@ -1,0 +1,258 @@
+﻿@model  emre_tatliyer_h5190021_yonlendirilmiscalismaproje.Models.ViewModel
+@{
+    ViewBag.Title = "MagazaÜrün";
+
+
+
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MusteriBilgileri</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bc" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        #scroll {
+            overflow: auto;
+            max-height: 120px;
+            min-width: 230px;
+        }
+        .markettablorengi {
+            margin-left: 420px;
+            max-height: 160px;
+            max-width: 1100px;
+            background-color: #e0e0e0;
+            font-size: 28px;
+        }
+        .market.content {
+            max-height: auto;
+            font-size: 20px;
+            background-color: #1A8CDC;
+        }
+        .row.contennt {
+            position: fixed;
+             margin-left:285px;
+             height:auto;
+            font-size: 29px;
+            background-color: #A3CCE8;
+        }
+            .row.contennt a {
+                display: block;
+                color: black;
+                padding: 25px;
+                text-decoration: none;
+            }
+                .row.contennt a.aktif {
+                    background-color: #04AA6D;
+                    color: white;
+                }
+                .row.contennt a:hover:not(.aktif) {
+                    background-color: #555;
+                    color: white;
+                }
+        .scroll-conntainer {
+            margin-left:35px;
+            background-color: #A3CCE8;
+            height: max-content;
+            margin-right:0px;
+            width: 1800px;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+        }
+        .scroll-page {
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            height: 100%;
+            font-size: 2em;
+        }
+        .product-container {
+            display: block;
+            flex-wrap: wrap;
+            margin-top: 5px;
+            margin-left: 0;
+            width: 100px;
+            height: auto;
+            padding: 7px;
+        }
+        .product-card {
+            display: block;
+            flex: 1 100%;
+            width: 900px;
+            height: auto;
+            text-align: center;
+            padding: 0;
+            margin: 5px;
+        }
+        .urunli {
+            display: flex;
+            width: 140px;
+            padding: 10px;
+            margin-block-start: 0px;
+        }
+        .product-title {
+            display: flex;
+            width: max-content;
+            font-size: 18px;
+        }
+        .product-card img {
+            margin-bottom: 10px;
+        }
+        .logobutton {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+        #butonduzenle{
+            margin-right: 90px;
+        }
+    </style>
+
+</head>
+<body style="background-color:#00CED1;">
+    <div class="logobutton">
+        <!-- logolu butona tıklandığında kullanıcıyı Bir önceki ekranına yönlendirir -->
+        <center><a onClick="history.go(-1)" target="_self"> <img src="https://i.hizliresim.com/i9mwdtw.png" width="130" height="130"></a></center>
+    </div>
+    <div>
+        <div class="col-12 text-left">
+            <div>
+                <ul style="list-style-type:none">
+                    @foreach (var item in Model.magaza)
+                    {
+                        <li class="list-group">
+                            <!-- Tbl_Magazadan gelen verileri bu kısımda ekrana basıyor -->
+                            <p class="markettablorengi">
+                                &emsp;&emsp;<img src="@Url.Content(item.MagazaResmi)" height="111px;" /> &emsp;&emsp;&emsp;
+                                &emsp;&emsp;&emsp;@item.MagazaAdi   <br /> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Süre: @item.MagazaSure Dk  &emsp;&emsp;&emsp;&emsp;
+                                Minimum Tutar: @item.MagazaMinTutar Tl
+                            </p>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-left" >
+        <div class="row">
+            <div class="col-9 text-left">
+                <div class="scroll-conntainer">
+                    <div class="scroll-page" id="page-1">
+                        İçecekler&emsp;&emsp;
+                        <div class="product-card">
+                            <ul style="list-style-type:none">
+                                <!-- Modeli tanımlar-->
+                                @foreach (var item in Model.urunler)
+                                {<!-- Dbden gelen kategoriye göre listeler-->
+                                    if (item.UrunKategorisi == 100)
+                                    {
+                                        <li style="float:left" display="flex">
+                                            <a class="urunli" href="">
+                                                <div><!--bilgileri ekrana basar-->
+                                                    <img src="@Url.Content(item.UrunResim)" height="89px" width="93px" />
+                                                    <h3 class="product-title">@item.UrunAdi</h3>
+                                                    <span class="product-title">@item.UrunFiyat Tl</span>
+                                                </div>
+                                            </a>
+                                            @foreach (var meti in Model.magaza)
+                                             {<!-- Modeli tanımlar-->
+                                            <input type="button" id="butonduzenle" class="btn btn-primary" onclick="window.location.href = '/Home/MagazaUrunDuzenle/@meti.MagazaId/@meti.MagazaTuruId/@item.UrunId'" value="Düzenle" />}
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="scroll-page" id="page-2">
+                        Temel Gıdalar
+                        <div class="product-card">
+                            <ul style="list-style-type:none">
+                                <!-- Modeli tanımlar-->
+                                @foreach (var item in Model.urunler)
+                                {<!-- Dbden gelen kategoriye göre listeler-->
+                                    if (item.UrunKategorisi == 101)
+                                    {
+                                <li style="float:left" display="flex">
+                                    <a class="urunli" href="">
+                                        <div><!--bilgileri ekrana basar-->
+                                            <img src="@Url.Content(item.UrunResim)" height="89px" width="93px" />
+                                            <h3 class="product-title">@item.UrunAdi</h3>
+                                            <span class="product-title">@item.UrunFiyat Tl</span>
+                                        </div>
+                                    </a> @foreach (var meti in Model.magaza)
+                                    {<!-- Modeli tanımlar-->
+                                        <input type="button" id="butonduzenle" class="btn btn-primary" onclick="window.location.href = '/Home/MagazaUrunDuzenle/@meti.MagazaId/@meti.MagazaTuruId/@item.UrunId';" value="Düzenle" />}
+                                </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="scroll-page" id="page-3">
+                        Atıştırmalık
+                        <div class="product-card">
+                            <ul style="list-style-type:none">
+                                @foreach (var item in Model.urunler)
+                                {
+                                    if (item.UrunKategorisi == 102)
+                                    {
+                                        <li style="float:left" display="flex">
+                                            <a class="urunli" href="">
+                                                <div>
+                                                    <img src="@Url.Content(item.UrunResim)" height="89px" width="93px" />
+                                                    <h3 class="product-title">@item.UrunAdi</h3>
+                                                    <span class="product-title">@item.UrunFiyat Tl</span>
+                                                </div>
+                                            </a> @foreach (var meti in Model.magaza)
+                                                                 {
+                                            <input type="button" id="butonduzenle" class="btn btn-primary" onclick="window.location.href = '/Home/MagazaUrunDuzenle/@meti.MagazaId/@meti.MagazaTuruId/@item.UrunId';" value="Düzenle" />}
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="scroll-page" id="page-4">
+                        Süt Ürünleri
+                        <div class="product-card">
+                            <ul style="list-style-type:none">
+                                @foreach (var item in Model.urunler)
+                                {
+                                    if (item.UrunKategorisi == 103)
+                                    {
+                                        <li style="float:left" display="flex">
+                                            <a class="urunli" href="">
+                                                <div>
+                                                    <img src="@Url.Content(item.UrunResim)" height="89px" width="93px" />
+                                                    <h3 class="product-title">@item.UrunAdi</h3>
+                                                    <span class="product-title">@item.UrunFiyat Tl</span>
+                                                </div>
+                                            </a> @foreach (var meti in Model.magaza)
+                                            {
+                                            <input type="button" id="butonduzenle" class="btn btn-primary" onclick="window.location.href = '/Home/MagazaUrunDuzenle/@meti.MagazaId/@meti.MagazaTuruId/@item.UrunId';" value="Düzenle" />}
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+                <div class="col-3">                
+                    <div class="row contennt" align="left">
+                        <nav>
+                            <a href="#page-1">İçeçekler</a>
+                            <a href="#page-2">Temel Gıdalar</a>
+                            <a href="#page-3">Atıştırmalık</a>
+                            <a href="#page-4">Süt & Kahvaltı</a>
+                        </nav>
+                    </div>
+                </div>           
+        </div>
+    </div>
+</body>
+</html>

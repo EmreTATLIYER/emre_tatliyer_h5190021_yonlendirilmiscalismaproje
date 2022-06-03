@@ -1,0 +1,227 @@
+﻿@model  emre_tatliyer_h5190021_yonlendirilmiscalismaproje.Models.ViewModel
+@{
+    ViewBag.Title = "Magazalar";
+    Layout = "~/Views/Shared/AnasayfaLayout.cshtml";
+
+    ViewBag.layoutrol = ViewBag.rol;
+}
+<html>
+<head>
+    <style>
+        #scroll {
+            overflow: auto;
+            max-height: 120px;
+            min-width: 230px;
+        }
+        .markettablorengi {
+            background-color: #e0e0e0;
+            font-size: 28px;
+        }
+        .market.content {
+            max-height: auto;
+            font-size: 20px;
+            background-color: #1A8CDC;
+        }
+        .row.contennt {
+            max-height: auto;
+            height: 1200px;
+            font-size: 29px;
+            background-color: #A3CCE8;
+        }
+        .row.content a {
+            display: block;
+            color: black;
+            padding: 18px;
+            text-decoration: none;
+        }
+            .row.content a.aktif {
+                background-color: #04AA6D;
+                color: white;
+            }
+            .row.content a:hover:not(.aktif) {
+                background-color: #555;
+                color: white;
+            }
+        .scroll-conntainer {
+            max-height: 1000px;
+            height: max-content;
+            width: 1330px;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+        }
+        .scroll-page {
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            height: 100%;
+            font-size: 2em;
+        }
+        .product-container {
+            display: block;
+            flex-wrap: wrap;
+            margin-top: 5px;
+            margin-left: 0;
+            width: 1100px;
+            height: auto;
+            padding: 7px;
+        }
+        .product-card {
+            display: block;
+            flex: 1 100%;
+            width:900px;
+            height:auto;
+            text-align: center;
+            padding: 0;
+            margin: 5px;
+        }
+        .urunli {
+            display: flex;
+            width: 160px;
+            padding: 10px;
+            font-size:20px;
+            margin-block-start: 0px;
+        }
+        .product-title {
+            display: flex;
+            width: max-content;}
+        .product-card img {
+            margin-bottom: 10px;
+        }  
+    </style>
+
+</head>
+<body>
+    <div>
+        <div class="col-sm-10 text-left">
+            <div>
+                <ul style="list-style-type:none">
+                    @foreach (var item in Model.magaza)
+                    {                    
+                        <li class="list-group">
+                            <!-- Tbl_Magazadan gelen verileri bu kısımda ekrana basıyor -->
+                            <p class="markettablorengi">                             
+                                &emsp;&emsp;<img src="@Url.Content(item.MagazaResmi)" height="111px;" /> &emsp;&emsp;&emsp;
+                                &emsp;&emsp;&emsp;@item.MagazaAdi   <br /> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Süre: @item.MagazaSure Dk  &emsp;&emsp;&emsp;&emsp;
+                                Minimum Tutar: @item.MagazaMinTutar Tl&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Puan: @item.MagazaPuan
+                            </p>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid text-center">
+        <div class="col-sm-8 text-left">
+            <div class="scroll-conntainer">
+                <div class="scroll-page" id="page-1">
+                    İçecekler&emsp;&emsp;                                       
+                        <div class="product-card">
+                            <ul style="list-style-type:none">
+                                <!-- Urunler tablosunda bulunan ürünleri Kategoriye göre ekrana basıyor-->
+                                @foreach (var item in Model.urunler)
+                                {   <!-- Verilerin listelenmesi için verilen şart-->
+                                    if (item.UrunKategorisi == 100)
+                                    {                                        
+                                            <li style="float:left" display="flex">
+                                                <a class="urunli" href="">
+                                                    <div><!-- Dbden istenilen veriler-->
+                                                        <img src="@Url.Content(item.UrunResim)" height="89px" width="93px" />
+                                                        <h3 class="product-title">@item.UrunAdi</h3>
+                                                        <span class="product-title">@item.UrunFiyat Tl</span>
+                                                    </div>
+                                                </a>
+                                            </li>                                      
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>                       
+                        <div class="scroll-page" id="page-2">
+                            Temel Gıdalar
+                            <div class="product-card">
+                                <ul style="list-style-type:none">
+                                    <!-- Urunler tablosunda bulunan ürünleri Kategoriye göre ekrana basıyor-->
+                                    @foreach (var item in Model.urunler)
+                                    {<!-- Verilerin listelenmesi için verilen şart-->
+                                        if (item.UrunKategorisi == 101)
+                                        {
+                                            <li style="float:left" display="flex">
+                                                <a class="urunli" href="">
+                                                    <div>
+                                                        <!-- Dbden istenilen veriler-->
+                                                        <img src="@Url.Content(item.UrunResim)" height="89px" width="93px" />
+                                                        <h3 class="product-title">@item.UrunAdi</h3>
+                                                        <span class="product-title">@item.UrunFiyat Tl</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="scroll-page" id="page-3">
+                            Atıştırmalık
+                            <div class="product-card">
+                                <ul style="list-style-type:none">
+                                    <!-- Urunler tablosunda bulunan ürünleri Kategoriye göre ekrana basıyor-->
+                                    @foreach (var item in Model.urunler)
+                                    {<!-- Verilerin listelenmesi için verilen şart-->
+                                        if (item.UrunKategorisi == 102)
+                                        {
+
+                                            <li style="float:left" display="flex">
+                                                <a class="urunli" href="">
+                                                    <div> <!-- Dbden istenilen veriler-->
+                                                        <img src="@Url.Content(item.UrunResim)" height="89px" width="93px" />
+                                                        <h3 class="product-title">@item.UrunAdi</h3>
+                                                        <span class="product-title">@item.UrunFiyat Tl</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="scroll-page" id="page-4">
+                            Süt Ürünleri
+                            <div class="product-card">
+                                <ul style="list-style-type:none">
+                                    <!-- Urunler tablosunda bulunan ürünleri Kategoriye göre ekrana basıyor-->
+                                    @foreach (var item in Model.urunler)
+                                    {<!-- Verilerin listelenmesi için verilen şart-->
+                                        if (item.UrunKategorisi == 103)
+                                        {
+                                            <li style="float:left" display="flex">
+                                                <a class="urunli" href="">
+                                                    <div>
+                                                        <!-- Dbden istenilen veriler-->
+                                                        <img src="@Url.Content(item.UrunResim)" height="89px" width="93px" />
+                                                        <h3 class="product-title">@item.UrunAdi</h3>
+                                                        <span class="product-title">@item.UrunFiyat Tl</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="row contennt">
+                <div class="col-sm-2">
+                    <div>
+                        <nav><!-- safya içinde belirtilen yerlere tıklandığında yönlendirilen kısım-->
+                            <a href="#page-1">İçeçekler</a>
+                            <a href="#page-2">Temel Gıdalar</a>
+                            <a href="#page-3">Atıştırmalık</a>
+                            <a href="#page-4">Süt & Kahvaltı</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>  
+</body>
+</html>

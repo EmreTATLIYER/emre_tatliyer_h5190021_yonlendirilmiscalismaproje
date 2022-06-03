@@ -1,0 +1,116 @@
+﻿@model emre_tatliyer_h5190021_yonlendirilmiscalismaproje.Models.TblMusteri
+@{
+    ViewBag.Title = "Giris";
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+    <meta name="viewport" content="widht=device-widht" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bc" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+        #Sifreduzen {
+            position: relative;
+            right: 34px;
+        }
+      
+        input[type=email] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 10px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        input[type=password] {
+            position:relative;
+            left:12px;
+            width: 80%;
+            align-items: center;
+            padding: 22px 18px;
+            margin: 10px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        input[type=submit] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        input[type=button] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        input[type=text] {
+            position: relative;
+            left: 13px;
+            width: 80%;
+            align-items: center;
+            padding: 22px 18px;
+            margin: 10px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+    </style>
+
+</head>
+<body style="background-color:#00CED1;">
+
+
+
+            @using (Html.BeginForm("Giris", "Home", FormMethod.Post))
+            {
+                <div>
+                    <p align="center">
+                        <img src="https://i.hizliresim.com/i9mwdtw.png" width="500" height="500"/>
+                        <!--Kullanıcıdan emailini girmesini istediğimiz alan-->
+                    <p align="center">
+                        <input type="email" required="" name="MusteriEmail" placeholder="E-mail"  value="tatlyeremre@gmail.com"/>
+
+                        <div align="center">
+                            <!--Kullanıcıdan Şifresini girmesini istediğimiz alan-->
+                            <input type="password" required="" id="MusteriSifre" name="MusteriSifre" placeholder="Şifre"  value="145"/>
+                            <!-- Şifre alanınan girilen yazıyı gösterme/gizleme butonu -->
+                            <i id="Sifreduzen" class="fa fa-eye parola" onClick="parolaGoster('MusteriSifre', this)">   </i>
+                        </div>
+                        <div align="center">@ViewBag.Mesaj</div><!-- Kullanıcı giriş yaptıktan sonra eğer hatalı bir veri girdiyse ekrana hata mesajı basar-->
+                        <!-- Giriş yapma butonu-->
+                    <p align="center">
+                        <input type="submit" class="btn btn-primary" value="Giriş">
+                        <!--Kullanıcıyıyı Kayıt olma ekranına yönlendirir-->
+                    <p align="center">
+                        <input type="button" onclick="window.location.href = '/Home/KayitOl';" value="Kayıt ol" />
+                        <!--Kullanıcıyı Şifremi Unuttum sayfasına yönlendirir -->
+                    <p align="center"> <a href="/Home/SifremiUnuttum" target="_self">Şifremi Unuttum!</a>
+                </div>
+                <script>
+                    function parolaGoster(id, el) {
+                        let x = document.getElementById(id);
+                        if (x.type === "password") {
+                            x.type = "text";
+                            el.className = 'fa fa-eye-slash parola';
+                        } else {
+                            x.type = "password";
+                            el.className = 'fa fa-eye parola';
+                        }
+                    }
+                </script>
+
+            }
+
+        </body>
+</html>

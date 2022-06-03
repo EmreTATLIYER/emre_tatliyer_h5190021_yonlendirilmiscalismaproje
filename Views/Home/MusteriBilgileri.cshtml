@@ -1,0 +1,128 @@
+﻿@model emre_tatliyer_h5190021_yonlendirilmiscalismaproje.Models.TblMusteri
+@{
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MusteriBilgileri</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bc" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+        input[type=email] {
+            padding: 15px 13px;
+            margin: 10px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        input[type=password] {
+            padding: 15px 13px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        input[type=submit] {
+            padding: 15px 13px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        input[type=button] {
+            padding: 15px 13px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        input[type=text] {
+            padding: 15px 13px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        input[type=tel] {
+            padding: 15px 13px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        .logobutton {
+            position: absolute;
+            left: 0px;
+        }
+        #Sifreduzen {
+            position: relative;
+            right: 34px;
+        }
+        #baslik {
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body style="background-color:#00CED1;">
+    <div class="logobutton">
+        <!-- logolu butona tıklandığında kullanıcıyı Anasayfa ekranına yönlendirir -->
+            <center><a href="/Home/Anasayfa" target="_self"> <img src="https://i.hizliresim.com/i9mwdtw.png" width="130" height="130"></a></center>
+    </div>
+ 
+    <div>
+        @using (Html.BeginForm("MusteriBilgileri", "Home", FormMethod.Post))
+        {
+        <div>
+            <p align="center">
+                <img src="https://i.hizliresim.com/4n6suuk.png" width="200" height="200" />
+            <p id="baslik" align="center">Müşteri bilgileri</p>
+            <p align="center">
+                <!-- Tıklandığında adres sayfasına yönlendirir-->
+                <input type="button" class="btn btn-primary" onclick="window.location.href = '/Home/MusteriAdres';" value="Adres Bilgileri" />
+                <!-- Tıklandığında kart sayfasına yönlendirir-->
+                <input type="button" class="btn btn-primary" onclick="window.location.href = '/Home/MusteriKart';" value="Kart Bilgileri" />
+
+                <div align="center"><!--Veritabanından alının kullanıcı bilgileri listelenir-->
+                    <input type="text" required="" maxlength="50" name="MusteriAd" value="@ViewBag.isim" placeholder="İsim" readonly>
+
+                    <input type="text" required="" maxlength="50" name="MusteriSoyad" value="@ViewBag.soyisim" placeholder="Soyisim" readonly>
+                    <br />
+                    <input type="email" required="" maxlength="70" name="MusteriEmail" value="@ViewBag.email" placeholder="E-mail" readonly>
+                    <input type="tel" required="" value="@ViewBag.tel" maxlength="10" pattern="\d{10}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                           name="MusteriTel" placeholder="Telefon No" readonly>
+                    <br />
+                    <input type="password" required="" maxlength="50" id="MusteriSifre" name="MusteriSifre" placeholder="Yeni Şifre" readonly>
+                    <i id="Sifreduzen" class="fa fa-eye parola" onClick="parolaGoster('MusteriSifre', this)"></i>
+                    <br />
+                    <input type="button" id="activate" class="btn btn-success" value="Düzenle"><!-- butona tıklandığında readonly olan kısımlar tekrardan açılır-->
+                    <input type="submit" class="btn btn-primary" value="Kaydet"><!-- Bilgi değişimi yapılırsa butona tıklanarak kayıt edilir-->
+                </div>
+                <div align="center">@ViewBag.Bildirim</div>
+        </div>
+        }
+    </div>
+    <script>
+        function parolaGoster(id, el) {
+            let x = document.getElementById(id);
+            if (x.type === "password") {
+                x.type = "text";
+                el.className = 'fa fa-eye-slash parola';
+            } else {
+                x.type = "password";
+                el.className = 'fa fa-eye parola';
+            }
+        }
+        $("#activate").click(function () {
+            $("input:input").each(function () {
+                if ($(this).prop("readonly") == true) {
+                    $(this).prop('readonly', false);
+                } else {
+                    $(this).prop('readonly', true);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

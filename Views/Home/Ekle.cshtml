@@ -1,0 +1,10 @@
+﻿@model emre_tatliyer_h5190021_yonlendirilmiscalismaproje.Models.Tbl_Kategori
+@{
+    ViewBag.Title = "Ekle";
+}
+
+<h2>Ekle</h2>
+@using (Html.BeginForm("Ekle","Home", FormMethod.Post, new { enctype = "multipart/form-data" })) { 
+<input type="file" name="MagazaResmi" />
+<input type="submit" value="Kaydet" />
+}

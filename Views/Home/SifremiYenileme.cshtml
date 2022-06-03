@@ -1,0 +1,104 @@
+﻿@model emre_tatliyer_h5190021_yonlendirilmiscalismaproje.Models.SifremiYenilemeModel
+@{
+    ViewBag.Title = "SifremiYenileme";
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="widht=device-widht" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bc" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+        input[type=email] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 10px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        input[type=text] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 2px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        input[type=password] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 2px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        input[type=submit] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 2px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        .logobutton {
+            position: absolute;
+            left:0px;
+            max-width: 100px;
+            max-height: 100px;
+        }
+    </style>
+
+
+
+</head>
+<body style="background-color:#00CED1;">
+
+    @using (Html.BeginForm("SifremiYenileme", "Home", FormMethod.Post))
+    {
+        <div class="logobutton"> <!-- logolu butona tıklandığında kullanıcıyı Giriş ekranına yönlendirir -->
+            <center><a href="/Home/Giris" target="_self"> <img src="https://i.hizliresim.com/i9mwdtw.png" width="200" height="200"></a></center>
+
+        </div>
+
+        @Html.AntiForgeryToken()<!--Oluşturulan rastgele Kod ile giriş yapılabilmesini sağlayan kod -->
+
+ <form>
+        <div align="center">
+            <font size="5">Yeni Şifre</font>
+        </div>
+        <div align="center">
+
+            <div><!-- Kullanıcıdan yeni Şifresini istediğimiz alan-->
+                <p align="center"><input type="password" required="" maxlength="50" name="YeniSifre" placeholder="Yeni Şifre">
+            </div>
+
+            @Html.ValidationMessageFor(pass => pass.YeniSifre)<!--Hatalı/Boş girildiğinde çalışan mesaj komutu-->
+        </div>
+        <div align="center">
+            <font size="5">Doğrulama Kodu</font>
+        </div>
+        <div align="center">
+
+            <div><!--Kullanıcıya mail ile gönderdiğimiz 6 haneli Kodu girmesini istediğimiz alan -->
+                <p align="center"><input type="text" required="" maxlength="6" name="MusteriSifreKod" placeholder="Kod">
+            </div>
+
+            @Html.ValidationMessageFor(pass => pass.MusteriSifreKod)<!--Hatalı/Boş girildiğinde çalışan mesaj komutu-->
+        </div>
+        <div align="center">
+            <!-- Şifreyi değiştirme butonu-->
+            <input type="submit" value="Şifreyi Değiştir" />
+
+        </div>
+        <div align="center">@ViewBag.Message</div><!-- şifrenin değiştirip değiştirmediğini birdiren mesaj kutusu-->
+
+</form>
+    }
+</body>
+</html>
+

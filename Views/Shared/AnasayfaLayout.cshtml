@@ -1,0 +1,211 @@
+﻿
+@{
+    ViewBag.Title = "AnasayfaLayout";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>Anasayfa</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+    <style>
+
+        .navbar {
+            position: relative;
+            margin-bottom: 0;
+            border-radius: 0;
+            background-color: #160602;
+        }
+
+        #logos {
+            margin-bottom: 5px;
+            margin-left: 3px;
+            margin-top: 0;
+        }
+
+
+        .row.content {
+            max-height: auto;
+            height: 1200px;
+            font-size: 18px;
+            background-color: #A3CCE8;
+        }
+
+            .row.content a {
+                display: block;
+                color: black;
+                padding: 18px;
+                text-decoration: none;
+            }
+
+                .row.content a.aktif {
+                    background-color: #04AA6D;
+                    color: white;
+                }
+
+                .row.content a:hover:not(.aktif) {
+                    background-color: #555;
+                    color: white;
+                }
+
+
+        .sidenav {
+            width: 300px;
+            font-size: 28px;
+            padding-top: 20px;
+            background-color: #1A8CDC;
+            height: 100%;
+        }
+
+
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 14px;
+        }
+
+
+        body {
+            background: #A3CCE8;
+        }
+
+        .search {
+            width: 70%;
+            position: relative;
+            display: flex;
+        }
+
+        .searchTerm {
+            width: 100%;
+            border: 3px solid #00B4CC;
+            border-right: none;
+            padding: 5px;
+            height: 36px;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            color: slategray;
+        }
+
+            .searchTerm:focus {
+                color: black;
+            }
+
+        .searchButton {
+            width: 40px;
+            height: 36px;
+            border: 1px solid #00B4CC;
+            background: #00B4CC;
+            text-align: center;
+            color: #fff;
+            border-radius: 0 0px 0px 0;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+
+        .wrap {
+            width: 30%;
+            position: absolute;
+            top: 40%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+        }
+
+        #simge {
+            font-size: 18px;
+        }
+
+        #magazakayit {
+            margin: 10px;
+            bottom: 0px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div>
+                    <a id="logos" class="navbar-brand"> <img src="https://i.hizliresim.com/bq9ae53.png" width="90" height="90"  </a>
+                </div>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+
+
+
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                </ul>
+                <div class="wrap">
+                    <div class="search">
+                        <input type="text" class="searchTerm" placeholder="Arama">
+                        <button type="button" class="searchButton">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <ul id="simge" class="nav navbar-nav navbar-right">
+
+                    <li><a href="#">Sipariş Takip</a></li>
+                    <li><a href="#"><span class="fa fa-shopping-cart"></span>Sepet</a></li>
+                    @if (ViewBag.rol == "P")
+                    {
+                        <li><a href="/Home/Magazalarim"><span class="fas fa-store"></span>Mağaza</a></li>
+                    }
+                    <li><a href="/Home/MusteriBilgileri"><span class="fa fa-user"></span>  @HttpContext.Current.User.Identity.Name</a></li>
+                    <li><a href="javascript:;" onclick="document.forms[0].submit();"> <span class="glyphicon glyphicon-log-in"></span> Çıkış</a></li>
+                    @using (Html.BeginForm("Logout", "Home", FormMethod.Post))
+                    { }
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid text-center">
+        <div class="row content">
+            <div class="col-sm-2 sidenav">
+                <div>
+                    <p><a href="/Home/Anasayfa">Anasayfa</a></p>
+                    <p><a href="/Home/Market">Market</a></p>
+                    <p><a href="/Home/Manav">Manav</a></p>
+                    <p><a href="/Home/Kasap">Kasap</a></p>
+                    <p><a href="/Home/Kuruyemisci">Kuruyemişçi</a></p>
+                    <p><a href="/Home/Petshop">Pet Shop</a></p>
+                </div>
+                <div>&emsp;</div>
+                <div>&emsp;</div>
+                <div>&emsp;</div><div>&emsp;</div><div>&emsp;</div><div>&emsp;</div><div>&emsp;</div><div>&emsp;</div><div>&emsp;</div><div>&emsp;</div><div>&emsp;</div><div>&emsp;</div><div>&emsp;</div>
+                <div>
+                    <p id="magazakayit">  <a href="/Home/MagazaKayit" target="_self">Mağaza Kayıt</a></p>
+                </div>
+            </div>
+
+            @RenderBody()
+            <div class="col-sm-9 text-left">
+
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="container-fluid text-center">
+        <p></p>
+    </footer>
+
+</body>
+</html>

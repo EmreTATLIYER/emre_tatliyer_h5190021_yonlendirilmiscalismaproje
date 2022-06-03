@@ -1,0 +1,85 @@
+﻿@model emre_tatliyer_h5190021_yonlendirilmiscalismaproje.Models.TblMusteri
+
+@{
+    ViewBag.Title = "SifremiUnuttum";
+}
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="widht=device-widht" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bc" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+        input[type=email] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 10px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        input[type=text] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 2px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        input[type=password] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 2px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        input[type=submit] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 2px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        .logobutton {
+            position: absolute;
+            left:0px;
+            max-width: 100px;
+            max-height: 100px;
+        }
+    </style>
+
+
+
+</head>
+<body style="background-color:#00CED1;">
+
+    @using (Html.BeginForm("SifremiUnuttum", "Home", FormMethod.Post))
+    {
+        <div class="logobutton"> <!-- logolu butona tıklandığında kullanıcıyı Giriş ekranına yönlendirir -->
+            <center><a href="/Home/Giris" target="_self"> <img src="https://i.hizliresim.com/i9mwdtw.png" width="200" height="200"></a></center>
+
+        </div>
+        <div align="center">
+            <font size="32">Şifremi Unuttum</font>
+            <!--Kullanıcıdan emailini girmesini istediğimiz alan-->
+            <p align="center"><input type="email" required="" name="Email" placeholder="E-mail">
+        </div>
+        <div align="center">@ViewBag.Message</div><!-- kullanıcı butona tıkladığında ekrana hatalı/başarılı mesajı basar-->
+        <div> <!--Butona tıklandığında kullanıcının emailine kod gönderir-->
+            <p align="center"><input type="submit" value="Kod Gönder">
+        </div>
+    }
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3cf00cea4a574c5580b5c9e625023074" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="DbWebMarketModel.sysdiagrams" Width="1.5" PointX="11.25" PointY="4.125" />
+        <EntityTypeShape EntityType="DbWebMarketModel.TblMagaza" Width="1.5" PointX="6" PointY="0.875" />
+        <EntityTypeShape EntityType="DbWebMarketModel.TblMagazaTuru" Width="1.5" PointX="11.25" PointY="1.625" />
+        <EntityTypeShape EntityType="DbWebMarketModel.TblMusteri" Width="1.5" PointX="2.375" PointY="1.125" />
+        <AssociationConnector Association="DbWebMarketModel.FK_TblMagaza_TblMusteri1" />
+        <EntityTypeShape EntityType="DbWebMarketModel.TblMusteriAdres" Width="1.5" PointX="3.625" PointY="7" />
+        <AssociationConnector Association="DbWebMarketModel.FK_TblMusteriAdres_TblMusteri" />
+        <EntityTypeShape EntityType="DbWebMarketModel.TblMusteriKart" Width="1.5" PointX="0.5" PointY="6.75" />
+        <AssociationConnector Association="DbWebMarketModel.FK_TblMusteriKart_TblMusteri" />
+        <EntityTypeShape EntityType="DbWebMarketModel.TblUrun" Width="1.5" PointX="6.375" PointY="5.75" />
+        <EntityTypeShape EntityType="DbWebMarketModel.TblUrunler" Width="1.5" PointX="8.25" PointY="1.125" />
+        <AssociationConnector Association="DbWebMarketModel.FK_TblUrunler_TblMagaza" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

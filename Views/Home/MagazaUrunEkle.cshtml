@@ -1,0 +1,318 @@
+﻿@model  emre_tatliyer_h5190021_yonlendirilmiscalismaproje.Models.TblUrunler
+@{
+
+}
+
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MusteriBilgileri</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bc" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+        input[type=submit] {
+            padding: 15px 13px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        #inputtext {
+            padding: 15px 13px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        .inputtext {
+            padding: 15px 13px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        .logobutton {
+            position: absolute;
+            left: 0px;
+        }
+        #tablo {
+            background-color: #9df9fb
+        }
+        #baslik {
+            font-size: 30px;
+        }
+        #tarihboyut {
+            height: 50px;
+            width: 60px;
+            margin-left: 0px;
+            margin-right: 0px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            text-align: right;
+        }
+        .cvvboyut {
+            height: 50px;
+            width: 60px;
+            margin-right: 0px;
+            margin-left: 6px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body style="background-color:#00CED1;">
+    <div class="logobutton">
+        <!-- logolu butona tıklandığında kullanıcıyı bir önceki ekranına yönlendirir -->
+        <center><a onClick="history.go(-1)" target="_self"> <img src="https://i.hizliresim.com/i9mwdtw.png" width="130" height="130"></a></center>
+    </div>
+    <div><!--Ürün eklemek için form oluşturur-->
+        @using (Html.BeginForm("MagazaUrunEkle", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div>
+                <p id="baslik" align="center">Ürün Ekleme</p>
+
+                <div align="center">
+                    <input id="inputtext" type="text" required="" maxlength="100" name="UrunAdi" value="" placeholder="Ürün adı">
+                    <!--Mağazanın türüne göre urun kategorisi listeler-->
+                    @if (ViewBag.magazakategori == 10)
+                    {
+                        <div align="center">
+                            <label for="UrunKategoriSecimi">Ürün Kategorisi Seçiniz</label>
+                            <select name="urunkategori" id="myForm" class="form-control">
+                                <option value="">Seçiniz </option>
+                                <option value="100">İçecekler</option>
+                                <option value="101">Temel Gıdalar</option>
+                                <option value="102">Atıştırmalık</option>
+                                <option value="103">Süt & Kahvaltı</option>
+                            </select>
+                        </div>
+                    }<!--Mağazanın türüne göre urun kategorisi listeler-->
+                    @if (ViewBag.magazakategori == 11)
+                    {
+                        <div align="center">
+                            <label for="UrunKategoriSecimi">Ürün Kategorisi Seçiniz</label>
+                            <select name="urunkategori" id="myForm" class="form-control">
+                                <option value="">Seçiniz </option>
+                                <option value="200">Meyve</option>
+                                <option value="201">Sebze</option>
+                                <option value="202">Otlar,Yeşillikler</option>
+                            </select>
+                        </div>
+                    }<!--Mağazanın türüne göre urun kategorisi listeler-->
+                    @if (ViewBag.magazakategori == 12)
+                    {
+                        <div align="center">
+                            <label for="UrunKategoriSecimi">Ürün Kategorisi Seçiniz</label>
+                            <select name="urunkategori" id="myForm" class="form-control">
+                                <option value="">Seçiniz </option>
+                                <option value="300">Kırmızı Et</option>
+                                <option value="301">Beyaz Et</option>
+                                <option value="302">Et Şarküteri</option>
+                            </select>
+                        </div>
+                    }<!--Mağazanın türüne göre urun kategorisi listeler-->
+                    @if (ViewBag.magazakategori == 13)
+                    {
+                        <div align="center">
+                            <label for="UrunKategoriSecimi">Ürün Kategorisi Seçiniz</label>
+                            <select name="urunkategori" id="myForm" class="form-control">
+                                <option value="">Seçiniz </option>
+                                <option value="400">Kuruyemiş</option>
+                                <option value="401">Kuru Meyve</option>
+                                <option value="402">Lokum,Şekerlemeler</option>
+                                <option value="403">Kahve,Çay</option>
+                            </select>
+                        </div>
+                    }<!--Mağazanın türüne göre urun kategorisi listeler-->
+                    @if (ViewBag.magazakategori == 14)
+                    {
+                        <div align="center">
+                            <label for="UrunKategoriSecimi">Ürün Kategorisi Seçiniz</label>
+                            <select name="urunkategori" id="myForm" class="form-control">
+                                <option value="">Seçiniz </option>
+                                <option value="500">Kedi</option>
+                                <option value="501">Köpek</option>
+                                <option value="502">Balık</option>
+
+                            </select>
+                        </div>
+                    }<!--Seçilen kategoriye göre tür listelenir-->
+                    <div align="center">
+                        <label for="UrunTuruSecimi">Ürün Türü Seçiniz</label>
+                        <select name="urunturu" id="myForm2" class="form-control">
+                            <option value="5">Yukarıdan Bir Öğe Seçiniz</option>
+                        </select>
+                    </div>
+                    <br />
+
+                    Ürünün fiyatını giriniz:<input id="tarihboyut" type="text" required="" maxlength="6" name="UrunFiyat" value="" placeholder="7.99"
+                                                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"> &#8378;
+                    <br />
+
+                    &emsp;&emsp;Ürünün Adedi:<input class="cvvboyut" type="text" required="" maxlength="5" name="UrunStock" value="" placeholder="100"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+
+                    <br />
+
+                    <textarea id="adres" required="" rows="5" maxlength="250" cols="60" name="UrunAciklama" placeholder="Ürün Açıklaması"></textarea><br>
+
+                    <input type="file" name="UrunResmi" />
+                    <br />
+
+                    <input type="submit" class="btn btn-primary" value="Ürünü Ekle"><!--Ürünü kayıt eder-->
+
+                </div>
+                <div align="center">@ViewBag.Kayit</div>
+            </div>
+        }
+    </div>
+
+
+    <script>
+        $("#activate").click(function () {
+            $(":input").each(function () {
+                if ($(this).prop("readonly") == true) {
+                    $(this).prop('readonly', false);
+                } else {
+                    $(this).prop('readonly', true);
+                }
+            });
+        });
+        function cc_format(value) {
+            var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
+            var matches = v.match(/\d{2,4}/g);
+            var match = matches && matches[0] || ''
+            var parts = []
+            for (i = 0, len = match.length; i < len; i += 2) {
+                parts.push(match.substring(i, i + 2))
+            }
+            if (parts.length) {
+                return parts.join('-')
+            } else {
+                return value
+            }
+        }
+
+        onload = function () {
+            document.getElementById('cc').oninput = function () {
+                this.value = cc_format(this.value)
+            }
+        }
+        function checkDigit(event) {
+            var code = (event.which) ? event.which : event.keyCode;
+
+            if ((code < 48 || code > 57) && (code > 31)) {
+                return false;
+            }
+
+            return true;
+        }
+        function phoneFormat(input) {//returns (###) ###-####
+            input = input.replace(/\D/g, '');
+            var size = input.length;
+            if (size > 0) { input = "(" + input }
+            if (size > 3) { input = input.slice(0, 4) + ") " + input.slice(4, 11) }
+            if (size > 6) { input = input.slice(0, 9) + "-" + input.slice(9) }
+            return input;
+        }
+
+        $("#myForm").change(function () {
+            myFormValue = $("#myForm").val();
+
+            if (myFormValue == 100) {
+                $("#myForm2")
+                    .empty();
+
+                $("#myForm2")
+                    .append("<option selected='selected' value='6'>Su</option>");
+
+                $("#myForm2")
+                    .append("<option value='7'>Gazlı İçecek</option>");
+
+                $("#myForm2")
+                    .append("<option value='8'>Enerji İçeceği</option>");
+                $("#myForm2")
+                    .append("<option value='61'>Maden Suyu</option>");
+            } else if (myFormValue == "101") {
+                $("#myForm2")
+                    .empty();
+                $("#myForm2")
+                    .append("<option selected='selected' value='9'>Makarna</option>");
+                $("#myForm2")
+                    .append("<option value='10'>Sıvı Yağ</option>");
+                $("#myForm2")
+                    .append("<option value='11'>Un</option>");
+            } else if (myFormValue == "102") {
+                $("#myForm2")
+                    .empty();
+                $("#myForm2")
+                    .append("<option selected='selected' value='12'>Gofret</option>");
+                $("#myForm2")
+                    .append("<option value='13'>Çikolata</option>");
+                $("#myForm2")
+                    .append("<option value='14'>Cips</option>");
+            } else if (myFormValue == "103") {
+                $("#myForm2")
+                    .empty();
+                $("#myForm2")
+                    .append("<option selected='selected' value='15'>Peynir</option>");
+                $("#myForm2")
+                    .append("<option value='16'>Yumurta</option>");
+                $("#myForm2")
+                    .append("<option value='17'>Yoğurt</option>");
+            } else if (myFormValue == "200") {
+                $("#myForm2")
+                    .empty();
+                $("#myForm2")
+                    .append("<option selected='selected' value='18'>Taze Meyveler</option>");
+            } else if (myFormValue == "201") {
+                $("#myForm2")
+                    .empty();
+                $("#myForm2")
+                    .append("<option selected='selected' value='19'>Taze Sebzeler</option>");
+                $("#myForm2")
+                    .append("<option value='20'>Kurutulmuş Sebzeler</option>");
+            } else if (myFormValue == "202") {
+                $("#myForm2")
+                    .empty();
+                $("#myForm2")
+                    .append("<option selected='selected' value='21'>Salata Malzemeleri</option>");
+            } else if (myFormValue == "300") {
+                $("#myForm2")
+                    .empty();
+                $("#myForm2")
+                    .append("<option selected='selected' value='22'>Dana Eti</option>");
+                $("#myForm2")
+                    .append("<option value='23'>Kuzu Eti</option>");
+            } else if (myFormValue == "301") {
+                $("#myForm2")
+                    .empty();
+                $("#myForm2")
+                    .append("<option selected='selected' value='24'>Hindi Eti</option>");
+                $("#myForm2")
+                    .append("<option value='25'>Piliç Eti</option>");
+            } else if (myFormValue == "302") {
+                $("#myForm2")
+                    .empty();
+                $("#myForm2")
+                    .append("<option selected='selected' value='26'>Salam,Füme Etler</option>");
+                $("#myForm2")
+                    .append("<option value='27'>Sucuk</option>");
+
+            } else {
+                $("#myForm2")
+                    .empty();
+                $("#myForm2")
+                    .append("<option selected='selected' value='5'>Yukarıdan Bir Öğe Seçiniz</option>");
+            }
+
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,92 @@
+﻿@model  IEnumerable<emre_tatliyer_h5190021_yonlendirilmiscalismaproje.Models.TblMagaza>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Magazalarim</title>
+    <style>
+ 
+
+        .market.content {
+            max-height: auto;
+            height: auto;
+            font-size: 25px;
+            width:530px;
+            margin-left:0px;
+            background-color: #A3CCE8;
+        }
+
+            .market.content a {
+                display: flex;
+                color: black;
+                padding: 5px;
+                text-decoration: none;
+            }
+
+                .market.content a.aktif {
+                    background-color: #04AA6D;
+                    color: white;
+                }
+
+                .market.content a:hover:not(.aktif) {
+                    background-color: #555;
+                    color: white;
+                }
+        .listeleme{
+            margin-right:0px;
+        }
+        .logobutton {
+            position: absolute;
+            left: 0px;
+            max-width: 100px;
+            max-height: 100px;
+        }
+        
+    </style>
+</head>
+
+<body style="background-color:#00CED1;">
+    <div class="logobutton">
+        <!-- logolu butona tıklandığında kullanıcıyı Giriş ekranına yönlendirir -->
+        <center><a href="/Home/Anasayfa" target="_self"> <img src="https://i.hizliresim.com/i9mwdtw.png" width="150" height="150"></a></center>
+
+    </div>
+    <div align="center">
+        <h1>Mağazalarım</h1>
+
+
+
+        <div class="market content">
+            <div class="col-sm-5 text-left">
+
+                <ul class="listeleme">
+
+                    @foreach (var item in Model)
+                    {
+
+                        <li style="list-style-type:none">
+                            <!-- Tbl_Kategoriden gelen verileri bu kısımda ekrana basıyor -->
+                            <a href="/Home/MagazaBilgileri/@item.MagazaId">
+
+                                <img src="@Url.Content(item.MagazaResmi)" height="66px;" />
+                                &emsp;
+                                <div align="center"> @item.MagazaAdi</div>
+                            </a>
+                            <hr color="black"/>
+
+                        </li>
+                    }
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

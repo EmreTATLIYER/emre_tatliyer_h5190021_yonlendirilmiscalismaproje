@@ -1,0 +1,160 @@
+﻿@model emre_tatliyer_h5190021_yonlendirilmiscalismaproje.Models.TblMagaza
+@{
+
+}
+
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MusteriBilgileri</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bc" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+        input[type=submit] {
+            padding: 15px 13px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        #inputtext {
+            padding: 15px 13px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        .inputtext {
+            padding: 15px 13px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        .logobutton {
+            position: absolute;
+            left: 0px;
+        }
+        #tablo {
+            background-color: #9df9fb
+        }
+        #baslik {
+            font-size: 30px;
+        }
+        #tarihboyut {
+            height: 50px;
+            width: 60px;
+            margin-left: 30px;
+            margin-right: 0px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            text-align: right;
+        }
+        .cvvboyut {
+            height: 50px;
+            width: 60px;
+            margin-right: 0px;
+            margin-left: 0px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        } 
+    </style>
+</head>
+
+<body style="background-color:#00CED1;">
+    <div class="logobutton">
+        <!-- logolu butona tıklandığında kullanıcıyı Anasayfa ekranına yönlendirir -->
+        <center><a href="/Home/Magazalarim" target="_self"> <img src="https://i.hizliresim.com/i9mwdtw.png" width="130" height="130"></a></center>
+    </div>
+    <div><!--Bilgileri Düzenlemek için Form oluşturur-->
+        @using (Html.BeginForm("MagazaBilgileri", "Home", FormMethod.Post , new{ enctype = "multipart/form-data" }))
+        {
+            <div><!--Mağaza bilgileri ekrana basılır-->
+                <p align="center">
+                    <img src="@Model.MagazaResmi" width="200" height="200" />
+                <p id="baslik" align="center">Mağaza bilgileri</p>
+                <p align="center">
+                    <!--Mağazanın urunlerinin bulunduğu sayfaya yönlendirir-->
+                    <input type="button" class="btn btn-primary" onclick="window.location.href = '/Home/MagazaUrun/@Model.MagazaId';" value="Mağaza Ürünleri" />
+                    <!--Ürün ekleme sayfasına yönlendirir-->
+                    <input type="button" class="btn btn-primary" onclick="window.location.href = '/Home/MagazaUrunEkle/@Model.MagazaId';" value="Ürün Ekleme" />
+
+                    <div align="center">
+                        <input id="inputtext" type="text" required="" maxlength="50" name="MagazaAdi" value="@Model.MagazaAdi" placeholder="İsim" readonly>
+                        <input class="inputtext" id="phone" type="tel" required="" value="@Model.MagazaTel" onInput="this.value = phoneFormat(this.value)"
+                               name="MagazaTel" placeholder="Mağaza Telefon No" readonly>
+                        <br />
+
+                        Minimum Tutar:<input id="tarihboyut" type="text" required="" maxlength="3" name="MagazaMinTutar" value="@Model.MagazaMinTutar" placeholder=""
+                                             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" readonly> &#8378;
+                        <br />
+
+                        Minimum Teslimat Süresi:<input class="cvvboyut" id="cc" type="text" required="" maxlength="5" name="MagazaSure" value="@Model.MagazaSure"
+                                                       onkeypress="return checkDigit(event)" placeholder="" readonly>Dakika
+                        <br />
+
+                        <textarea id="adres" required="" rows="5" value="" cols="60" name="MagazaAdres" placeholder="Mağaza Adresi" readonly>@Model.MagazaAdres</textarea><br>
+
+                        <br />
+
+                        <input type="button" id="activate" class="btn btn-success" value="Düzenle"><!--readonly olan kısımları yeniden aktif hale getirir-->
+                        <input type="submit" class="btn btn-primary" value="Kaydet"><!--Eğer bilgi değişimi olduysa buton ile kayıt edilir-->
+                    </div>
+                    <div align="center">@ViewBag.Bildirim</div>
+            </div>
+        }
+    </div>
+
+    <script>
+        $("#activate").click(function () {
+            $(":input").each(function () {
+                if ($(this).prop("readonly") == true) {
+                    $(this).prop('readonly', false);
+                } else {
+                    $(this).prop('readonly', true);
+                }
+            });
+        });
+        function cc_format(value) {
+            var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
+            var matches = v.match(/\d{2,4}/g);
+            var match = matches && matches[0] || ''
+            var parts = []
+            for (i = 0, len = match.length; i < len; i += 2) {
+                parts.push(match.substring(i, i + 2))
+            }
+            if (parts.length) {
+                return parts.join('-')
+            } else {
+                return value
+            }
+        }
+
+        onload = function () {
+            document.getElementById('cc').oninput = function () {
+                this.value = cc_format(this.value)
+            }
+        }
+        function checkDigit(event) {
+            var code = (event.which) ? event.which : event.keyCode;
+
+            if ((code < 48 || code > 57) && (code > 31)) {
+                return false;
+            }
+
+            return true;
+        }
+        function phoneFormat(input) {//returns (###) ###-####
+            input = input.replace(/\D/g, '');
+            var size = input.length;
+            if (size > 0) { input = "(" + input }
+            if (size > 3) { input = input.slice(0, 4) + ") " + input.slice(4, 11) }
+            if (size > 6) { input = input.slice(0, 9) + "-" + input.slice(9) }
+            return input;
+        }
+    </script>
+</body>
+</html>

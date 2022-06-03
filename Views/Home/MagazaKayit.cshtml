@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "MagazaKayit";
+}
+<html>
+<head>
+    <meta name="viewport" content="widht=device-widht" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bc" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        input[type=email] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 10px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        input[type=password] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        input[type=submit] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        input[type=text] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        input[type=tel] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        #adres {
+            width: 100%;
+            margin: 9px;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        .logobutton {
+            position: absolute;
+            left: 0px;
+            max-width: 100px;
+            max-height: 100px;
+        }
+    </style>
+</head>
+<body style="background-color:#00CED1;">
+    <div class="logobutton">
+        <!-- logolu butona tıklandığında kullanıcıyı Giriş ekranına yönlendirir -->
+        <a href="/Home/Anasayfa"><img src="https://i.hizliresim.com/i9mwdtw.png" width="200" height="200"></a>
+
+    </div>
+    <!--Kayıt için Form oluşturur-->
+    <form action="/Home/MagazaKayit" method="post">
+        <div>
+            <p align="center">
+                <img src="https://i.hizliresim.com/mml50r1.png" width="200" height="200" />
+            <p align="center">
+                <font size="29">Mağaza Başvuru </font>
+
+            <p align="center">
+                <input type="text" required="" maxlength="100" name="MusteriAd" value="@ViewBag.isim @ViewBag.soyisim" disabled>
+            <p align="center">
+                <input type="tel" required="" maxlength="10" pattern="\d{10}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                       name="MusteriTel" value="@ViewBag.tel" disabled>
+
+            <p align="center">
+                <input type="email" required="" maxlength="70" name="MusteriEmail" value="@ViewBag.email" disabled>
+            <p align="center">
+                <input type="text" required="" maxlength="100" name="MagazaAdi" placeholder="Mağaza Adı">
+
+            <p align="center">
+                <input type="tel" required="" maxlength="10" pattern="\d{10}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                       name="MagazaTel" placeholder="Mağaza Telefon No">
+                <div align="center">
+                    <!--Mağaza Türü seçimi için oluşturulan Dropdown-->
+                    <label for="MgzTurSecimi">Magaza Türü Seçiniz</label>
+                    <select required="" name="magazaturuid" class="form-control">
+                        <option value="">Seçiniz </option>
+                        <option value="10">Market</option>
+                        <option value="11">Manav</option>
+                        <option value="12">Kasap</option>
+                        <option value="13">Kuruyemişci</option>
+                        <option value="14">Pet Shop</option>
+                    </select>
+                </div>
+            <p align="center">
+
+                <textarea id="adres" required="" rows="5" cols="60" name="MagazaAdres" placeholder="Mağaza Adresi"></textarea><br>
+
+                <div align="center">@ViewBag.Kayit</div>
+
+            <p align="center"><input type="submit" class="btn btn-primary" value="Başvuruyu Tamamla">
+        </div>
+    </form>
+</body>
+</html>

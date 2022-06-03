@@ -1,0 +1,487 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DbWebMarketModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TblMagaza">
+          <Key>
+            <PropertyRef Name="MagazaId" />
+          </Key>
+          <Property Name="MagazaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MusteriId" Type="int" Nullable="false" />
+          <Property Name="MagazaTuruId" Type="int" />
+          <Property Name="MagazaAdi" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MagazaTel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MagazaAdres" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="MagazaResmi" Type="nvarchar(max)" />
+          <Property Name="MagazaMinTutar" Type="nvarchar" MaxLength="50" />
+          <Property Name="MagazaPuan" Type="nvarchar" MaxLength="50" />
+          <Property Name="MagazaSure" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TblMagazaTuru">
+          <Key>
+            <PropertyRef Name="MagazaTuruId" />
+          </Key>
+          <Property Name="MagazaTuruId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MagazaTuru" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TblMusteri">
+          <Key>
+            <PropertyRef Name="MusteriId" />
+          </Key>
+          <Property Name="MusteriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MusteriAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MusteriSoyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MusteriEmail" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="MusteriTel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MusteriSifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MusteriSifreKodu" Type="nvarchar" MaxLength="100" />
+          <Property Name="MusteriRol" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="TblMusteriAdres">
+          <Key>
+            <PropertyRef Name="MusteriAdresId" />
+          </Key>
+          <Property Name="MusteriAdresId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MusteriId" Type="int" Nullable="false" />
+          <Property Name="MusteriAdresAdi" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="MusteriAdres" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="MusteriAdresIl" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MusteriAdresIlce" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="MusteriAdresDurum" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="TblMusteriKart">
+          <Key>
+            <PropertyRef Name="MusteriKartId" />
+          </Key>
+          <Property Name="MusteriKartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MusteriId" Type="int" Nullable="false" />
+          <Property Name="MusteriKartAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MusteriKartNo" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="MusteriKartUstuIsim" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MusteriKartTarih" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="MusteriKartCV" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="MusteriKartDurum" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="TblUrun">
+          <Key>
+            <PropertyRef Name="UrunId" />
+          </Key>
+          <Property Name="UrunId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Urunad" Type="nchar" MaxLength="100" />
+          <Property Name="UrunFiyati" Type="int" />
+          <Property Name="UrunBilgisi" Type="nchar" MaxLength="150" />
+          <Property Name="UrunResmi" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TblUrunler">
+          <Key>
+            <PropertyRef Name="UrunId" />
+          </Key>
+          <Property Name="UrunId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MagazaId" Type="int" />
+          <Property Name="UrunAdi" Type="nvarchar" MaxLength="100" />
+          <Property Name="UrunKategorisi" Type="int" />
+          <Property Name="UrunTuru" Type="nvarchar" MaxLength="100" />
+          <Property Name="UrunFiyat" Type="nvarchar" MaxLength="10" />
+          <Property Name="UrunStock" Type="nvarchar" MaxLength="10" />
+          <Property Name="UrunResim" Type="nvarchar(max)" />
+          <Property Name="UrunAciklama" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK_TblMagaza_TblMusteri1">
+          <End Role="TblMusteri" Type="Self.TblMusteri" Multiplicity="1" />
+          <End Role="TblMagaza" Type="Self.TblMagaza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMusteri">
+              <PropertyRef Name="MusteriId" />
+            </Principal>
+            <Dependent Role="TblMagaza">
+              <PropertyRef Name="MusteriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblMusteriAdres_TblMusteri">
+          <End Role="TblMusteri" Type="Self.TblMusteri" Multiplicity="1" />
+          <End Role="TblMusteriAdres" Type="Self.TblMusteriAdres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMusteri">
+              <PropertyRef Name="MusteriId" />
+            </Principal>
+            <Dependent Role="TblMusteriAdres">
+              <PropertyRef Name="MusteriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblMusteriKart_TblMusteri">
+          <End Role="TblMusteri" Type="Self.TblMusteri" Multiplicity="1" />
+          <End Role="TblMusteriKart" Type="Self.TblMusteriKart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMusteri">
+              <PropertyRef Name="MusteriId" />
+            </Principal>
+            <Dependent Role="TblMusteriKart">
+              <PropertyRef Name="MusteriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblUrunler_TblMagaza">
+          <End Role="TblMagaza" Type="Self.TblMagaza" Multiplicity="0..1" />
+          <End Role="TblUrunler" Type="Self.TblUrunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMagaza">
+              <PropertyRef Name="MagazaId" />
+            </Principal>
+            <Dependent Role="TblUrunler">
+              <PropertyRef Name="MagazaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbWebMarketModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblMagaza" EntityType="Self.TblMagaza" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblMagazaTuru" EntityType="Self.TblMagazaTuru" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblMusteri" EntityType="Self.TblMusteri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblMusteriAdres" EntityType="Self.TblMusteriAdres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblMusteriKart" EntityType="Self.TblMusteriKart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblUrun" EntityType="Self.TblUrun" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblUrunler" EntityType="Self.TblUrunler" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TblMagaza_TblMusteri1" Association="Self.FK_TblMagaza_TblMusteri1">
+            <End Role="TblMusteri" EntitySet="TblMusteri" />
+            <End Role="TblMagaza" EntitySet="TblMagaza" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblMusteriAdres_TblMusteri" Association="Self.FK_TblMusteriAdres_TblMusteri">
+            <End Role="TblMusteri" EntitySet="TblMusteri" />
+            <End Role="TblMusteriAdres" EntitySet="TblMusteriAdres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblMusteriKart_TblMusteri" Association="Self.FK_TblMusteriKart_TblMusteri">
+            <End Role="TblMusteri" EntitySet="TblMusteri" />
+            <End Role="TblMusteriKart" EntitySet="TblMusteriKart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUrunler_TblMagaza" Association="Self.FK_TblUrunler_TblMagaza">
+            <End Role="TblMagaza" EntitySet="TblMagaza" />
+            <End Role="TblUrunler" EntitySet="TblUrunler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbWebMarketModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="WebMarketDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="DbWebMarketModel.sysdiagrams" />
+          <EntitySet Name="TblMagaza" EntityType="DbWebMarketModel.TblMagaza" />
+          <EntitySet Name="TblMagazaTuru" EntityType="DbWebMarketModel.TblMagazaTuru" />
+          <EntitySet Name="TblMusteri" EntityType="DbWebMarketModel.TblMusteri" />
+          <AssociationSet Name="FK_TblMagaza_TblMusteri1" Association="DbWebMarketModel.FK_TblMagaza_TblMusteri1">
+            <End Role="TblMusteri" EntitySet="TblMusteri" />
+            <End Role="TblMagaza" EntitySet="TblMagaza" />
+          </AssociationSet>
+          <EntitySet Name="TblMusteriAdres" EntityType="DbWebMarketModel.TblMusteriAdres" />
+          <AssociationSet Name="FK_TblMusteriAdres_TblMusteri" Association="DbWebMarketModel.FK_TblMusteriAdres_TblMusteri">
+            <End Role="TblMusteri" EntitySet="TblMusteri" />
+            <End Role="TblMusteriAdres" EntitySet="TblMusteriAdres" />
+          </AssociationSet>
+          <EntitySet Name="TblMusteriKart" EntityType="DbWebMarketModel.TblMusteriKart" />
+          <AssociationSet Name="FK_TblMusteriKart_TblMusteri" Association="DbWebMarketModel.FK_TblMusteriKart_TblMusteri">
+            <End Role="TblMusteri" EntitySet="TblMusteri" />
+            <End Role="TblMusteriKart" EntitySet="TblMusteriKart" />
+          </AssociationSet>
+          <EntitySet Name="TblUrun" EntityType="DbWebMarketModel.TblUrun" />
+          <EntitySet Name="TblUrunler" EntityType="DbWebMarketModel.TblUrunler" />
+          <AssociationSet Name="FK_TblUrunler_TblMagaza" Association="DbWebMarketModel.FK_TblUrunler_TblMagaza">
+            <End Role="TblMagaza" EntitySet="TblMagaza" />
+            <End Role="TblUrunler" EntitySet="TblUrunler" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TblMagaza">
+          <Key>
+            <PropertyRef Name="MagazaId" />
+          </Key>
+          <Property Name="MagazaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MusteriId" Type="Int32" Nullable="false" />
+          <Property Name="MagazaTuruId" Type="Int32" />
+          <Property Name="MagazaAdi" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MagazaTel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MagazaAdres" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MagazaResmi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MagazaMinTutar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MagazaPuan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MagazaSure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblMusteri" Relationship="DbWebMarketModel.FK_TblMagaza_TblMusteri1" FromRole="TblMagaza" ToRole="TblMusteri" />
+          <NavigationProperty Name="TblUrunler" Relationship="DbWebMarketModel.FK_TblUrunler_TblMagaza" FromRole="TblMagaza" ToRole="TblUrunler" />
+        </EntityType>
+        <EntityType Name="TblMagazaTuru">
+          <Key>
+            <PropertyRef Name="MagazaTuruId" />
+          </Key>
+          <Property Name="MagazaTuruId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MagazaTuru" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TblMusteri">
+          <Key>
+            <PropertyRef Name="MusteriId" />
+          </Key>
+          <Property Name="MusteriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MusteriAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriSoyad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriEmail" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriTel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriSifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriSifreKodu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriRol" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="TblMagaza" Relationship="DbWebMarketModel.FK_TblMagaza_TblMusteri1" FromRole="TblMusteri" ToRole="TblMagaza" />
+          <NavigationProperty Name="TblMusteriAdres" Relationship="DbWebMarketModel.FK_TblMusteriAdres_TblMusteri" FromRole="TblMusteri" ToRole="TblMusteriAdres" />
+          <NavigationProperty Name="TblMusteriKart" Relationship="DbWebMarketModel.FK_TblMusteriKart_TblMusteri" FromRole="TblMusteri" ToRole="TblMusteriKart" />
+        </EntityType>
+        <Association Name="FK_TblMagaza_TblMusteri1">
+          <End Type="DbWebMarketModel.TblMusteri" Role="TblMusteri" Multiplicity="1" />
+          <End Type="DbWebMarketModel.TblMagaza" Role="TblMagaza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMusteri">
+              <PropertyRef Name="MusteriId" />
+            </Principal>
+            <Dependent Role="TblMagaza">
+              <PropertyRef Name="MusteriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TblMusteriAdres">
+          <Key>
+            <PropertyRef Name="MusteriAdresId" />
+          </Key>
+          <Property Name="MusteriAdresId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MusteriId" Type="Int32" Nullable="false" />
+          <Property Name="MusteriAdres" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblMusteri" Relationship="DbWebMarketModel.FK_TblMusteriAdres_TblMusteri" FromRole="TblMusteriAdres" ToRole="TblMusteri" />
+          <Property Name="MusteriAdresIl" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriAdresIlce" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriAdresAdi" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriAdresDurum" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_TblMusteriAdres_TblMusteri">
+          <End Type="DbWebMarketModel.TblMusteri" Role="TblMusteri" Multiplicity="1" />
+          <End Type="DbWebMarketModel.TblMusteriAdres" Role="TblMusteriAdres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMusteri">
+              <PropertyRef Name="MusteriId" />
+            </Principal>
+            <Dependent Role="TblMusteriAdres">
+              <PropertyRef Name="MusteriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TblMusteriKart">
+          <Key>
+            <PropertyRef Name="MusteriKartId" />
+          </Key>
+          <Property Name="MusteriKartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MusteriId" Type="Int32" Nullable="false" />
+          <Property Name="MusteriKartAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriKartNo" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriKartUstuIsim" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriKartTarih" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriKartCV" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="MusteriKartDurum" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="TblMusteri" Relationship="DbWebMarketModel.FK_TblMusteriKart_TblMusteri" FromRole="TblMusteriKart" ToRole="TblMusteri" />
+        </EntityType>
+        <Association Name="FK_TblMusteriKart_TblMusteri">
+          <End Type="DbWebMarketModel.TblMusteri" Role="TblMusteri" Multiplicity="1" />
+          <End Type="DbWebMarketModel.TblMusteriKart" Role="TblMusteriKart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMusteri">
+              <PropertyRef Name="MusteriId" />
+            </Principal>
+            <Dependent Role="TblMusteriKart">
+              <PropertyRef Name="MusteriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TblUrun">
+          <Key>
+            <PropertyRef Name="UrunId" />
+          </Key>
+          <Property Name="UrunId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Urunad" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="UrunFiyati" Type="Int32" />
+          <Property Name="UrunBilgisi" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <Property Name="UrunResmi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TblUrunler">
+          <Key>
+            <PropertyRef Name="UrunId" />
+          </Key>
+          <Property Name="UrunId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MagazaId" Type="Int32" />
+          <Property Name="UrunAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UrunKategorisi" Type="Int32" />
+          <Property Name="UrunTuru" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UrunFiyat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UrunStock" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UrunResim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UrunAciklama" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblMagaza" Relationship="DbWebMarketModel.FK_TblUrunler_TblMagaza" FromRole="TblUrunler" ToRole="TblMagaza" />
+        </EntityType>
+        <Association Name="FK_TblUrunler_TblMagaza">
+          <End Type="DbWebMarketModel.TblMagaza" Role="TblMagaza" Multiplicity="0..1" />
+          <End Type="DbWebMarketModel.TblUrunler" Role="TblUrunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblMagaza">
+              <PropertyRef Name="MagazaId" />
+            </Principal>
+            <Dependent Role="TblUrunler">
+              <PropertyRef Name="MagazaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbWebMarketModelStoreContainer" CdmEntityContainer="WebMarketDbEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DbWebMarketModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblMagaza">
+            <EntityTypeMapping TypeName="DbWebMarketModel.TblMagaza">
+              <MappingFragment StoreEntitySet="TblMagaza">
+                <ScalarProperty Name="MagazaSure" ColumnName="MagazaSure" />
+                <ScalarProperty Name="MagazaPuan" ColumnName="MagazaPuan" />
+                <ScalarProperty Name="MagazaMinTutar" ColumnName="MagazaMinTutar" />
+                <ScalarProperty Name="MagazaResmi" ColumnName="MagazaResmi" />
+                <ScalarProperty Name="MagazaAdres" ColumnName="MagazaAdres" />
+                <ScalarProperty Name="MagazaTel" ColumnName="MagazaTel" />
+                <ScalarProperty Name="MagazaAdi" ColumnName="MagazaAdi" />
+                <ScalarProperty Name="MagazaTuruId" ColumnName="MagazaTuruId" />
+                <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
+                <ScalarProperty Name="MagazaId" ColumnName="MagazaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblMagazaTuru">
+            <EntityTypeMapping TypeName="DbWebMarketModel.TblMagazaTuru">
+              <MappingFragment StoreEntitySet="TblMagazaTuru">
+                <ScalarProperty Name="MagazaTuru" ColumnName="MagazaTuru" />
+                <ScalarProperty Name="MagazaTuruId" ColumnName="MagazaTuruId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblMusteri">
+            <EntityTypeMapping TypeName="DbWebMarketModel.TblMusteri">
+              <MappingFragment StoreEntitySet="TblMusteri">
+                <ScalarProperty Name="MusteriRol" ColumnName="MusteriRol" />
+                <ScalarProperty Name="MusteriSifreKodu" ColumnName="MusteriSifreKodu" />
+                <ScalarProperty Name="MusteriSifre" ColumnName="MusteriSifre" />
+                <ScalarProperty Name="MusteriTel" ColumnName="MusteriTel" />
+                <ScalarProperty Name="MusteriEmail" ColumnName="MusteriEmail" />
+                <ScalarProperty Name="MusteriSoyad" ColumnName="MusteriSoyad" />
+                <ScalarProperty Name="MusteriAd" ColumnName="MusteriAd" />
+                <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblMusteriAdres">
+            <EntityTypeMapping TypeName="DbWebMarketModel.TblMusteriAdres">
+              <MappingFragment StoreEntitySet="TblMusteriAdres">
+                <ScalarProperty Name="MusteriAdresDurum" ColumnName="MusteriAdresDurum" />
+                <ScalarProperty Name="MusteriAdresAdi" ColumnName="MusteriAdresAdi" />
+                <ScalarProperty Name="MusteriAdresIlce" ColumnName="MusteriAdresIlce" />
+                <ScalarProperty Name="MusteriAdresIl" ColumnName="MusteriAdresIl" />
+                <ScalarProperty Name="MusteriAdres" ColumnName="MusteriAdres" />
+                <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
+                <ScalarProperty Name="MusteriAdresId" ColumnName="MusteriAdresId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblMusteriKart">
+            <EntityTypeMapping TypeName="DbWebMarketModel.TblMusteriKart">
+              <MappingFragment StoreEntitySet="TblMusteriKart">
+                <ScalarProperty Name="MusteriKartDurum" ColumnName="MusteriKartDurum" />
+                <ScalarProperty Name="MusteriKartCV" ColumnName="MusteriKartCV" />
+                <ScalarProperty Name="MusteriKartTarih" ColumnName="MusteriKartTarih" />
+                <ScalarProperty Name="MusteriKartUstuIsim" ColumnName="MusteriKartUstuIsim" />
+                <ScalarProperty Name="MusteriKartNo" ColumnName="MusteriKartNo" />
+                <ScalarProperty Name="MusteriKartAdi" ColumnName="MusteriKartAdi" />
+                <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
+                <ScalarProperty Name="MusteriKartId" ColumnName="MusteriKartId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblUrun">
+            <EntityTypeMapping TypeName="DbWebMarketModel.TblUrun">
+              <MappingFragment StoreEntitySet="TblUrun">
+                <ScalarProperty Name="UrunResmi" ColumnName="UrunResmi" />
+                <ScalarProperty Name="UrunBilgisi" ColumnName="UrunBilgisi" />
+                <ScalarProperty Name="UrunFiyati" ColumnName="UrunFiyati" />
+                <ScalarProperty Name="Urunad" ColumnName="Urunad" />
+                <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblUrunler">
+            <EntityTypeMapping TypeName="DbWebMarketModel.TblUrunler">
+              <MappingFragment StoreEntitySet="TblUrunler">
+                <ScalarProperty Name="UrunAciklama" ColumnName="UrunAciklama" />
+                <ScalarProperty Name="UrunResim" ColumnName="UrunResim" />
+                <ScalarProperty Name="UrunStock" ColumnName="UrunStock" />
+                <ScalarProperty Name="UrunFiyat" ColumnName="UrunFiyat" />
+                <ScalarProperty Name="UrunTuru" ColumnName="UrunTuru" />
+                <ScalarProperty Name="UrunKategorisi" ColumnName="UrunKategorisi" />
+                <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+                <ScalarProperty Name="MagazaId" ColumnName="MagazaId" />
+                <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

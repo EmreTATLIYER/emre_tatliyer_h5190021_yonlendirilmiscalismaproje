@@ -1,0 +1,98 @@
+﻿@model emre_tatliyer_h5190021_yonlendirilmiscalismaproje.Models.TblMusteri
+@{
+    ViewBag.Title = "KayitOl";
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta name="viewport" content="widht=device-widht" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bc" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+        input[type=email] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 10px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        input[type=password] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        input[type=submit] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        input[type=text] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        input[type=tel] {
+            width: 80%;
+            padding: 22px 18px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        .logobutton {
+            position: absolute;
+            left:0px;
+            max-width: 100px;
+            max-height: 100px;
+        }
+    </style>
+
+</head>
+<body style="background-color:#00CED1;">
+
+        <div class="logobutton"> <!-- logolu butona tıklandığında kullanıcıyı Giriş ekranına yönlendirir -->
+            <center><a href="/Home/Giris" target="_self"> <img src="https://i.hizliresim.com/i9mwdtw.png" width="200" height="200"></a></center>
+
+        </div>
+
+        @using (Html.BeginForm("KayitOl", "Home", FormMethod.Post))
+        {
+            <div>
+                <p align="center"><img src="https://i.hizliresim.com/4n6suuk.png" width="290" height="290" />
+                    <!-- kullanıcıdan kayıt olurken ismini girmesini istediğimiz alan-->
+                <p align="center"><input type="text" required="" maxlength="50" name="MusteriAd" placeholder="İsim">
+                    <!-- kullanıcıdan kayıt olurken Soyadını girmesini istediğimiz alan-->
+                <p align="center"><input type="text" required="" maxlength="50" name="MusteriSoyad" placeholder="Soyisim">
+                    <!-- kullanıcıdan kayıt olurken Emailini girmesini istediğimiz alan-->
+                <p align="center"><input type="email" required="" maxlength="70" name="MusteriEmail" placeholder="E-mail">
+                    <!-- kullanıcıdan kayıt olurken Telefon numarasını girmesini istediğimiz alan-->
+                <p align="center"><input type="tel" required="" maxlength="10" pattern="\d{10}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" 
+                                         name="MusteriTel" placeholder="Telefon No">
+
+                    <!-- kullanıcıdan kayıt olurken Şifresini girmesini istediğimiz alan-->
+                <p align="center"><input type="password" required="" maxlength="50" name="MusteriSifre" placeholder="Şifre">
+          
+                    <div align="center">@ViewBag.Kayit</div>    <!-- kullanıcı butona tıkladığında ekrana hatalı/başarılı mesajı basar-->
+                    <!-- kayıt butonu-->
+                <p align="center"><input type="submit" class="btn btn-primary" value="Kayıt Ol">
+            </div>
+        }
+
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+﻿@model  IEnumerable<emre_tatliyer_h5190021_yonlendirilmiscalismaproje.Models.TblMagaza>
+@{
+    ViewBag.Title = "Manav";
+    Layout = "~/Views/Shared/AnasayfaLayout.cshtml";
+
+    ViewBag.layoutrol = ViewBag.rol;
+}
+
+<html>
+<head>
+    <style>
+        #scroll {
+            overflow: auto;
+            max-height: 1200px;
+            min-width: 2300px;
+        }
+
+        .market.content {
+            max-height: auto;
+            height: 1200px;
+            font-size: 20px;
+            background-color: #A3CCE8;
+        }
+
+            .market.content a {
+                display: block;
+                color: black;
+                padding: 29px;
+                text-decoration: none;
+            }
+
+                .market.content a.aktif {
+                    background-color: #04AA6D;
+                    color: white;
+                }
+
+                .market.content a:hover:not(.aktif) {
+                    background-color: #555;
+                    color: white;
+                }
+    </style>
+
+</head>
+<body>
+    <div class="market content">
+        <div class="col-sm-9 text-left">
+            <div id="scroll">
+                <ul class="list-group">
+                    @foreach (var item in Model)
+                    {
+
+                        <li class="list-group">
+                            <!-- Tbl_Kategoriden gelen verileri bu kısımda ekrana basıyor -->
+                            <a href="/Home/ManavMgz/@item.MagazaId">
+                                &emsp;&emsp;
+                                <img src="@Url.Content(item.MagazaResmi)" height="66px;" />
+                                &emsp;&emsp;&emsp;
+                                @item.MagazaAdi  <br /> &emsp;&emsp;
+                                Süre: @item.MagazaSure Dk  &emsp;&emsp;&emsp;&emsp;
+                                Minimum Tutar: @item.MagazaMinTutar Tl
+                                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Puan: @item.MagazaPuan
+                            </a>
+
+                        </li>
+                    }
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

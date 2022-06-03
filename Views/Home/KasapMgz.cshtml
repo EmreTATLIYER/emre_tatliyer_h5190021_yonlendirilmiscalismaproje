@@ -1,0 +1,129 @@
+﻿@model  IEnumerable<emre_tatliyer_h5190021_yonlendirilmiscalismaproje.Models.TblMagaza>
+@{
+    ViewBag.Title = "KasapMgz";
+    Layout = "~/Views/Shared/AnasayfaLayout.cshtml";
+}
+
+<html>
+<head>
+    <style>
+        #scroll {
+            overflow: auto;
+            max-height: 120px;
+            min-width: 230px;
+        }
+
+        .markettablorengi {
+            background-color: #e0e0e0;
+            font-size: 28px;
+        }
+
+        .market.content {
+            max-height: auto;
+            font-size: 20px;
+            background-color: #1A8CDC;
+        }
+
+        .row.contennt {
+            max-height: auto;
+            height: 1200px;
+            font-size: 29px;
+            background-color: #A3CCE8;
+        }
+
+        .row.content a {
+            display: block;
+            color: black;
+            padding: 18px;
+            text-decoration: none;
+        }
+
+            .row.content a.aktif {
+                background-color: #04AA6D;
+                color: white;
+            }
+
+            .row.content a:hover:not(.aktif) {
+                background-color: #555;
+                color: white;
+            }
+
+
+        .scroll-conntainer {
+            height: 1000px;
+            width: 1330px;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+        }
+
+        .scroll-page {
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            height: 100%;
+            font-size: 2em;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div>
+        <div class="col-sm-10 text-left">
+            <div>
+                <ul style="list-style-type:none">
+                    @foreach (var item in Model)
+                    {
+
+
+                        <li class="list-group">
+                            <!-- Tbl_Kategoriden gelen verileri bu kısımda ekrana basıyor -->
+                            <p class="markettablorengi">
+
+                                &emsp;&emsp;<img src="@Url.Content(item.MagazaResmi)" height="111px;" /> &emsp;&emsp;&emsp;
+                                &emsp;&emsp;&emsp;@item.MagazaAdi   <br /> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Süre: @item.MagazaSure Dk  &emsp;&emsp;&emsp;&emsp;
+                                Minimum Tutar: @item.MagazaMinTutar Tl&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Puan: @item.MagazaPuan
+
+                            </p>
+
+
+                        </li>
+                    }
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid text-center">
+        <div class="col-sm-8 text-left">
+
+            <div class="scroll-conntainer">
+                <div class="scroll-page" id="page-1">Kırmızı Et</div>
+                <div class="scroll-page" id="page-2">Beyaz Et</div>
+                <div class="scroll-page" id="page-3">Et Şarküteri</div>
+            </div>
+        </div>
+        <div class="row contennt">
+            <div class="col-sm-2">
+                <div>
+
+                    <nav>
+                        <a href="#page-1">Kırmızı Et</a>
+                        <a href="#page-2">Beyaz Et</a>
+                        <a href="#page-3">Et Şarküteri</a>
+                    </nav>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+</body>
+</html>
+
+

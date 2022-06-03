@@ -1,0 +1,97 @@
+﻿@model  emre_tatliyer_h5190021_yonlendirilmiscalismaproje.Models.TblMusteriAdres
+@{
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MusteriAdresDuzenle</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bc" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+        input[type=submit] {
+            padding: 15px 13px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        input[type=text] {
+            padding: 15px 13px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        input[type=button] {
+            padding: 15px 13px;
+            margin: 9px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+        .logobutton {
+            position: absolute;
+            left: 0px;
+        }
+        #baslik {
+            font-size: 30px;
+        }
+        #adres {
+            width: 100%;
+            margin: 9px;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body style="background-color:#00CED1;">
+    <div class="logobutton">
+        <!-- logolu butona tıklandığında kullanıcıyı Adres sayfasına yönlendirir ekranına yönlendirir -->
+        <center><a href="/Home/MusteriAdres" target="_self"> <img src="https://i.hizliresim.com/i9mwdtw.png" width="130" height="130"></a></center>
+    </div>
+    <div><!--Adresi Düzenlemek için form oluşturur-->
+        @using (Html.BeginForm("MusteriAdresDuzenle", "Home", FormMethod.Post))
+        {
+            <div>
+                <p align="center">
+                    <img src="https://i.hizliresim.com/r4t727l.png" width="150" height="200" />
+                <p id="baslik" align="center">Adres bilgileri</p>
+                <div align="center">
+                    <input type="text" name="musteriadresid" value="@Model.MusteriAdresId" hidden />
+                    <input type="text" value="@Model.MusteriAdresAdi" required="" maxlength="50" name="MusteriAdresAdi" placeholder="Adres Adı" readonly>
+
+                    <br />
+                    <input type="text" value="@Model.MusteriAdresIl" required="" maxlength="50" name="MusteriAdresIl" placeholder="İl" readonly>
+                    <input type="text" value="@Model.MusteriAdresIlce" required="" maxlength="50" name="MusteriAdresIlce" placeholder="İlçe" readonly>
+
+                    <br />
+                    <textarea id="adres" value="" required="" rows="5" cols="60" name="MusteriAdres" placeholder="Kullanıcı Adresi" readonly>@Model.MusteriAdres</textarea><br>
+
+                    <br />
+                    <input type="button" id="activate" class="btn btn-success" value="Düzenle"><!--readonly olan kısımları yeniden aktif yapar-->
+                    <input type="submit" class="btn btn-primary" value="Kaydet"><!--değişikleri kayıt eder-->
+                </div>
+                <div align="center">@ViewBag.Bildirim</div>
+            </div>
+        }
+    </div>
+
+
+    <script>
+        $("#activate").click(function () {
+            $(":input").each(function () {
+                if ($(this).prop("readonly") == true) {
+                    $(this).prop('readonly', false);
+                } else {
+                    $(this).prop('readonly', true);
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>
