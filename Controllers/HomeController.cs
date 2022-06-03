@@ -161,9 +161,9 @@ namespace emre_tatliyer_h5190021_yonlendirilmiscalismaproje.Controllers
             var verifyUrl = "/Home/" + emailFor + "/" + activationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
-            var fromEmail = new MailAddress("Vicboss162@gmail.com");
+            var fromEmail = new MailAddress("*****@gmail.com");
             var toEmail = new MailAddress(email);
-            var fromEmailPassword = "Joker3275";
+            var fromEmailPassword = "******";
 
             string subject = "Şifre Sıfırlama";
             string body = "Merhaba,<br>Şifrenizi altta bulunan linkten sıfırlayabilirisiniz.<br>Doğrulama kodunuz:" + activationCode +
